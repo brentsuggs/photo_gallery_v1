@@ -2,6 +2,7 @@
 Photo Gallery Project
 
 Author: Brent Suggs
+February 29th, 2016
 *******************************/
 
 
@@ -9,4 +10,102 @@ Author: Brent Suggs
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
+}
+
+html, 
+body {
+    font-size: 16px; 
+    margin-top: 75px;
+}
+
+.wrap {
+    width: 80%; 
+    max-width: 980px; 
+    margin: 0 auto; 
+}
+
+header {
+    position: fixed; 
+    top: 0; 
+    width: 100%;
+    text-align: center;
+    padding: 25px 0; 
+    background-color: white;
+    border-bottom: 1px solid lightgrey;
+}
+
+img {
+    width: 100%;
+}
+
+#search {
+    width: 80%; 
+    max-width: 460px;
+    height: 2.5em;
+    padding-left: 5px; 
+    border-radius: 3px;
+    box-shadow: none; 
+}
+
+/**********************
+    GALLERY
+**********************/ 
+
+.gallery {
+    list-style: none; 
+    padding-left: 0; 
+}
+
+.gallery li {
+    width: 200px;
+    margin: 0 auto 30px auto;   
+}
+
+
+/**********************
+    MEDIA QUERIES
+**********************/ 
+
+@media screen and (min-width: 480px) {
+    .gallery li {
+        display: inline-block;
+        width: 45%;
+        margin-left: -4px;
+        margin-right: 10%;
+    }
+    
+    .gallery li:nth-child(2n + 2) {
+        margin-right: 0; 
+    }
+}
+
+@media screen and (min-width: 780px) {
+    
+    .gallery li,
+    .gallery li:nth-child(2n + 2) {
+        width: 30%;
+        margin-right: 4%;
+        margin-bottom: 30px; 
+    }
+    
+    .gallery li:nth-child(3n + 3) {
+        margin-right: 0; 
+    }
+
+}
+
+@media screen and (min-width: 1024px) {
+    
+    .gallery li,
+    .gallery li:nth-child(2n + 2),
+    .gallery li:nth-child(3n + 3) {
+        width: 20%;
+        margin-right: 6.5%;
+        margin-bottom: 60px; 
+    }
+
+    .gallery li:nth-child(4n + 4) {
+        margin-right: 0; 
+
+    }
 }
