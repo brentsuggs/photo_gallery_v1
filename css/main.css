@@ -15,7 +15,7 @@ February 29th, 2016
 html, 
 body {
     font-size: 16px; 
-    margin-top: 75px;
+    margin-top: 50px;
 }
 
 .wrap {
@@ -31,20 +31,31 @@ header {
     text-align: center;
     padding: 25px 0; 
     background-color: white;
-    border-bottom: 1px solid lightgrey;
+/*    border-bottom: .5px solid lightgrey;*/
 }
 
 img {
     width: 100%;
 }
 
+/**********************
+    SEARCH BAR
+**********************/ 
+
 #search {
     width: 80%; 
     max-width: 460px;
     height: 2.5em;
-    padding-left: 5px; 
     border-radius: 3px;
-    box-shadow: none; 
+    border: 2px solid #D5D5D5;
+	padding-left: 10px;
+	font-size: 1em;
+	box-sizing: border-box;
+}
+
+#search:focus {
+    border: 2px solid #B5B5B5; 
+    outline: none; 
 }
 
 /**********************
