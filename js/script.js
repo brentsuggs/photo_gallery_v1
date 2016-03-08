@@ -1,52 +1,55 @@
-"use strict";
+
 
 //CREATE VARIABLES 
 var $search = $('#search'); 
-var $gallery = $('.gallery');
-var $imgs =  $('.gallery li img');
-var imgCache = []; 
+var $overlay = $('<div id="overlay"></div>'); 
+var $img = $('<img>'); 
+var $caption = $('<p></p>'); 
+var $leftArrow = $('<span id="navLeft" class="icon-reply"></span>');
+var $rightArrow = $('<span id="navRight" class="icon-forward"></span>');
+
+//append img to the overlay
+$overlay.append($img);  
+
+//append caption to the overlay
+$overlay.append($caption); 
+
+//append arrows to overlay 
+$overlay.append($leftArrow, $rightArrow); 
+
+//append overlay to body
+$('body').append($overlay); 
 
 
-//POSSIBLE OPTION FOR ADDING IMGS TO GALLERY 
-//for (var i = 0; i < imgObjs.length; i += 1) {
-//    var img = imgObjs[i]; 
-//    var html = '<li>'; 
-//    html += '<a href="img/' + img.url + '" title="' + img.title + '">';
-//    html += '<img src="img/Thumbnails/' + img.url + '" alt="' + img.alt + '" />';
-//    html += '</a>';
-//    html += '</li>'; 
-//    
-//    $gallery.append(html); 
-//}
-
-$imgs.each(function () {
-    imgCache.push({
-        tag: this,
-        alt: this.alt.trim().toLowerCase()
-    }); 
-}); 
-
-function filterImgs() {
-    var query = $search.val().toLowerCase(); 
-
-    imgCache.forEach(function(img) {
-        if (img.alt.indexOf(query) === -1) {
-            img.tag.style.display = 'none'; 
-        }else {
-            img.tag.style.display = ''; 
-        }  
-    });
-}
-
-
-$search.focus(filterImgs).keyup(filterImgs); 
-
-
-$(document).ready(function() {
+// Get click event for #gallery links  
+$('#gallery a').click(function(e) {
+    e.preventDefault();
     
-    $gallery.magnificPopup({
-        delegate: 'li a',
-        type: 'image',
-        gallery: {enabled: true}
-    });
+    var href = $(this).attr('href');
+    var cap = $(this).children('img').attr('alt'); 
+    
+    $img.attr('src', href); 
+    $caption.text(cap); 
+    
+    $overlay.show(); 
 });
+
+// Get click event for #overlay
+$overlay.click(function() {
+    $overlay.hide(); 
+})
+
+
+
+
+//$search.focus(filterImgs).keyup(filterImgs); 
+
+
+//$(document).ready(function() {
+//    
+//    $gallery.magnificPopup({
+//        delegate: 'li a',
+//        type: 'image',
+//        gallery: {enabled: true}
+//    });
+//});

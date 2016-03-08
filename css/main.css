@@ -29,6 +29,12 @@ body {
     margin: 0 auto; 
 }
 
+.clearfix::after {
+	content: "";
+	display: table;
+	clear: both;
+}
+
 header {
     position: fixed; 
     top: 0; 
@@ -43,6 +49,46 @@ img {
     width: 100%;
 }
 
+/**********************
+    LIGHTBOX
+**********************/ 
+
+#overlay {
+    background: rgba(0,0,0,.7); 
+    width: 100vw; 
+    height: 100vh; 
+    position: fixed;
+    top: 0; 
+    display: none; 
+    text-align: center; 
+}
+
+#overlay img {
+    width: 60%; 
+    margin-top: 7%;
+    display: none;
+}
+
+#overlay p {
+    color: white;
+}
+
+#navLeft,
+#navRight {
+    display: inline-block;
+    position: fixed; 
+    margin-top: 10%; 
+    color: white; 
+    z-index: 1000;
+}
+
+#navLeft {
+    left: 5%; 
+}
+
+#navRight {
+    right: 5%; 
+}
 
 /**********************
     SEARCH BAR
@@ -67,75 +113,53 @@ img {
     GALLERY
 **********************/ 
 
-.gallery {
+#gallery {
     list-style: none; 
     padding-left: 0; 
 }
 
-.gallery li {
-    width: 200px;
-    margin: 0 auto 30px auto;   
+
+li.gallery-item {
+    margin: 0 0 60px 0; 
 }
 
-
-/**********************
-    MFP MODS
-**********************/ 
-
-img.mfp-img {
-    width: 1024px;
-}
-
-.mfp-title {
-    margin-top: 15px !important;
-    max-width: 600px; 
-    line-height: 1.5; 
-}
 
 /**********************
     MEDIA QUERIES
 **********************/ 
 
 @media screen and (min-width: 480px) {
-    .gallery li {
-        display: inline-block;
-        width: 45%;
-        margin-left: -4px;
-        margin-right: 10%;
+    
+    li.gallery-item {
+        float: left; 
+        margin: 0 60px 60px 0; 
     }
     
-    .gallery li:nth-child(2n + 2) {
+    li.gallery-item:nth-child(2n+2) {
         margin-right: 0; 
     }
 }
 
 @media screen and (min-width: 780px) {
     
-    .gallery li,
-    .gallery li:nth-child(2n + 2) {
-        width: 30%;
-        margin-right: 4%;
-        margin-bottom: 30px; 
+
+    li.gallery-item:nth-child(2n+2) {
+        margin-right: 60px;
     }
     
-    .gallery li:nth-child(3n + 3) {
-        margin-right: 0; 
+    li.gallery-item:nth-child(3n+3) {
+        margin-right: 0;
     }
-
 }
 
 @media screen and (min-width: 1024px) {
     
-    .gallery li,
-    .gallery li:nth-child(2n + 2),
-    .gallery li:nth-child(3n + 3) {
-        width: 20%;
-        margin-right: 6.5%;
-        margin-bottom: 60px; 
+
+    li.gallery-item:nth-child(3n+3) {
+        margin-right: 60px;
     }
 
-    .gallery li:nth-child(4n + 4) {
-        margin-right: 0; 
-
+    li.gallery-item:nth-child(4n+4) {
+        margin-right: 0;
     }
 }
