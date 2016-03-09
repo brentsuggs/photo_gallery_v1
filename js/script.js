@@ -8,6 +8,7 @@ var $img = $('<img>');
 var $caption = $('<p></p>'); 
 var $leftArrow = $('<span id="navLeft" class="icon-reply"></span>');
 var $rightArrow = $('<span id="navRight" class="icon-forward"></span>');
+var $close = $('<span id="navClose" class="icon-close"></span>')
 var $removed = []; 
 
 //append img to the overlay
@@ -17,7 +18,7 @@ $overlay.append($img);
 $overlay.append($caption); 
 
 //append arrows to overlay 
-$overlay.append($leftArrow, $rightArrow); 
+$overlay.append($leftArrow, $rightArrow, $close); 
 
 //append overlay to body
 $('body').append($overlay); 
@@ -89,14 +90,14 @@ function keyScroll(e) {
     }
 }
 
-//$overlay.keydown(function(e) {
-//    keyScroll(e); 
-//});
+$overlay.keydown(function(e) {
+    keyScroll(e); 
+});
 
 // Gallery Filtration 
 
 function filterImgs(item, search) {
-    var imgTitle = item.find('img').attr('title'); 
+    var imgTitle = item.find('img').attr('title').toLowerCase(); 
     return imgTitle.indexOf(search); 
 }
 
@@ -107,7 +108,7 @@ $search.keyup(function() {
        result =  filterImgs($(this), searchValue); 
         if(result === -1) {
             $removed.push($(this)); 
-            $(this).detach(); 
+            $(this).hide(700, function() {$(this).detach();}); 
         }
     });
     
@@ -115,6 +116,7 @@ $search.keyup(function() {
         result = filterImgs($removed[i], searchValue);
         if(result !== -1) {
             $gallery.append($removed[i]); 
+            $removed[i].show(700);
             $removed.splice(i, 1);
             i--; 
         }
